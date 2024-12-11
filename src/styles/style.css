@@ -28,10 +28,11 @@ body {
 .sidebar {
   background: #ffffff;
   width: 250px;
-  padding: 15px;
+  padding: 40px 15px;
   display: flex;
   flex-direction: column;
   box-shadow: 4px 0 20px -10px rgba(0, 0, 0, 0.25);
+  z-index: 2;
 }
 
 .menu {
@@ -98,4 +99,68 @@ body {
   display: flex;
   align-items: center;
   gap: 20px;
+}
+
+.content {
+  background-color: #faf9f8;
+  width: 100%;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 30px;
+  /* padding-right: 55px; */
+}
+.header-title {
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: var(--bold);
+  font-size: 22px;
+}
+.edit-header-title-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding-bottom: 15px;
+}
+.header-title > span {
+}
+.edit-header-title-input {
+  display: none;
+  background-color: #faf9f8;
+  width: 100px;
+  height: 30px;
+  font-size: 22px;
+  font-weight: var(--bold);
+  border-radius: 6px;
+  border: none;
+  /* border: 1px solid var(--darkish_grey); */
+}
+
+.header-settings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.header-order-button,
+.header-delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  font-size: 17px;
+}
+
+.header-delete-button {
+  color: #d84c4c;
 }
