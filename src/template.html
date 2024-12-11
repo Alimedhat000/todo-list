@@ -6,17 +6,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="This is My Page's Description">
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/icons/favion.png">
-    <title>Document</title>
-    <!-- Css-reset -->
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
-    <!-- js-script -->
-    <script src="script.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.png">
+    <title>Todo List</title>
 </head>
 
 <body>
-    <div>Lets Gooooo New project!</div>
+    <div class="task-manager">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <button class="menu-toggle-button">☰</button>
+            <ul class="menu">
+                <li>
+                    <button class="menu-button">
+                        <img src="assets/icons/Sun_light.svg" alt="">
+                        <span>Today</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-button">
+                        <img src="assets/icons/Star_light.svg" alt="">
+                        <span>Important</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-button">
+                        <img src="assets/icons/Date_range_duotone_line.svg" alt="">
+                        <span>Planned</span>
+                    </button>
+                </li>
+                <li class="active">
+                    <button class="menu-button">
+                        <img src="assets/icons/Home_light.svg" alt="">
+                        <span>Home</span>
+                    </button>
+                </li>
+                <li></li>
+            </ul>
+            <button class="menu-new-button">
+                <div>
+                    <img src="assets/icons/Add_round_light.svg" alt="">
+                    <span>New List</span>
+                </div>
+                <img src="assets/icons/Chat_plus_duotone_line.svg" alt="">
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <!-- <main class="content">
+            <header class="header">
+                <h1>Home</h1>
+                <div class="actions">
+                    <button class="sort-button">Sort</button>
+                    <button class="group-button">Group</button>
+                </div>
+            </header>
+
+            <section class="task-section">
+                <div class="add-task">
+                    <input type="text" placeholder="Add a Task" />
+                    <div class="add-task-buttons">
+                        <div class="add-task-props">
+                            <button class="add-task-date">D</button>
+                            <button class="add-task-priority">P</button>
+                            <button class="add-task-tags">T</button>
+                        </div>
+                        <button class="add-button">Add</button>
+                    </div>
+                </div>
+                <ul class="task-list">
+                    <li>
+                        <input type="checkbox" />
+                        <span>Study DSP</span>
+                        <button class="star-button">⭐</button>
+                    </li>
+                </ul>
+                <div class="completed-tasks">
+                    <h2>Completed</h2>
+                    <div>
+                        <p>7</p>
+                        <button></button>
+                    </div>
+                </div>
+            </section>
+        </main> -->
+    </div>
 </body>
 
 </html>

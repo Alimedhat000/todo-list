@@ -1,10 +1,102 @@
-@import "./reset.css";
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
 
-@media screen and (max-width: 1200px) {
+:root {
+  --light: 200;
+  --regular: 400;
+  --bold: 700;
+
+  --grey: #868583;
+
+  --darkish_grey: #414141;
+  --blue: #2564cf;
+  --kinda_white: #faf9f8;
 }
 
-@media screen and (max-width: 768px) {
+body {
+  font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+  display: flex;
+  height: 100vh;
+  color: #414141;
 }
 
-@media screen and (max-width: 375px) {
+.task-manager {
+  display: flex;
+  width: 100%;
 }
+
+.sidebar {
+  background: #ffffff;
+  width: 250px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 20px -10px rgba(0, 0, 0, 0.25);
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+}
+
+.menu li {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.menu li:last-child {
+  border-bottom: 1px solid #d1d1d1;
+}
+
+.menu li.active {
+  background: #dce6f7;
+  font-weight: bold;
+}
+
+.menu-toggle-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  text-align: start;
+  padding-left: 15px;
+  margin: 0;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  font-size: 17px;
+  cursor: pointer;
+  text-align: start;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #414141;
+}
+
+.menu-new-button {
+  padding: 20px 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+  display: flex;
+  text-align: start;
+  justify-content: space-between;
+  color: var(--blue);
+}
+
+.menu-new-button > div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
