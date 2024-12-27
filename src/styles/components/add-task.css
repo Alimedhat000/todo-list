@@ -1,0 +1,133 @@
+.add-task-card {
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  padding: 16px;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.add-task-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: #d0d0d0;
+}
+
+.task-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--darkish_grey);
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 8px 0;
+  margin-bottom: 8px;
+  transition: color 0.2s ease;
+}
+
+.task-input:focus {
+  color: var(--blue);
+}
+
+.task-description {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--grey);
+  font-size: 0.9rem;
+  padding: 4px 0;
+  margin-bottom: 16px;
+  transition: color 0.2s ease;
+}
+
+.task-description:focus {
+  color: var(--darkish_grey);
+}
+
+.task-description,
+.task-input:focus {
+  outline: none;
+}
+
+.buttons-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: var(--grey);
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.action-button:hover {
+  background: #f0f4fa;
+  color: var(--darkish_grey);
+}
+
+.bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inbox-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: var(--grey);
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.inbox-button:hover {
+  background: #f0f4fa;
+  color: var(--darkish_grey);
+}
+
+.right-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.cancel-button {
+  background: transparent;
+  border: none;
+  color: var(--grey);
+  padding: 6px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancel-button:hover {
+  background: #f0f0f0;
+  color: var(--darkish_grey);
+}
+
+.add-task-button {
+  background: var(--blue);
+  border: none;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-task-button:hover {
+  background: #1a4fa6;
+  transform: translateY(-1px);
+}

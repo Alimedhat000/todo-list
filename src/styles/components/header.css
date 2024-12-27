@@ -1,0 +1,98 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 0;
+}
+
+.header-title {
+  color: var(--blue);
+  display: flex;
+  gap: 5px;
+  font-weight: var(--bold);
+  font-size: 22px;
+}
+.header-title > span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.edit-header-title-button {
+  display: flex;
+  align-items: center;
+  height: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.edit-header-title-input {
+  display: none;
+  background-color: #faf9f8;
+  width: 100px;
+  height: 30px;
+  font-size: 22px;
+  font-weight: var(--bold);
+  border-radius: 6px;
+  border: none;
+  /* border: 1px solid var(--darkish_grey); */
+}
+
+.header-settings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.header-order-button,
+.header-delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  font-size: 17px;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.header-delete-button {
+  color: #d84c4c;
+}
+
+/* Header Buttons Hover Effects */
+.header-order-button:hover,
+.header-delete-button:hover {
+  background-color: #f5f5f5;
+  transition: background-color 0.3s ease;
+}
+
+.header-order-button:hover {
+  background-color: #e6f2ff;
+}
+
+.header-delete-button:hover {
+  background-color: #fff0f0;
+  color: var(--red);
+}
+
+/* Edit Header Title Button Hover */
+.edit-header-title-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 20%;
+  transition: background-color 0.3s ease;
+}
+
+/* Basic cursor style for interactive elements */
+.menu-button,
+.menu-new-button,
+.header-order-button,
+.header-delete-button,
+.edit-header-title-button {
+  cursor: pointer;
+}

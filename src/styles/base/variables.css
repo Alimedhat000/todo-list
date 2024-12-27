@@ -1,0 +1,21 @@
+:root {
+  --light: 200;
+  --regular: 400;
+  --bold: 700;
+
+  --grey: #868583;
+
+  --darkish_grey: #414141;
+  --blue: #2564cf;
+  --red: #ff4d4d;
+  --kinda_white: #faf9f8;
+
+  --priority-1: #8e959e;
+  --priority-2: #ffc107;
+  --priority-3: #17a2b8;
+  --priority-4: #28a745;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
