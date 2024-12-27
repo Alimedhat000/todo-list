@@ -160,12 +160,13 @@
                     </button>
 
                     <button class="action-button">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-5 0 16 12"
+                            class="icon">
+                            <path fill="currentColor" fill-rule="evenodd"
+                                d="M9.357 1C10.264 1 11 1.736 11 2.643V6.07c0 .436-.173.854-.481 1.162L7.232 10.52a1.643 1.643 0 0 1-2.323 0L1.48 7.09c-.64-.64-.64-1.68.001-2.322L4.768 1.48C5.076 1.173 5.494 1 5.93 1h3.427zm-.07.91H5.93a.805.805 0 0 0-.569.235L2.145 5.362a.805.805 0 0 0 0 1.138L5.5 9.855a.805.805 0 0 0 1.138 0l3.217-3.217a.805.805 0 0 0 .236-.569V2.713a.804.804 0 0 0-.804-.804zM7.364 3.726a.91.91 0 1 1 0 1.818.91.91 0 0 1 0-1.818z">
+                            </path>
                         </svg>
-                        Reminders
+                        Tags
                     </button>
 
                     <button class="action-button">
@@ -186,7 +187,7 @@
                 </div>
             </section>
             <div class="tasks-container">
-                <div class="task">
+                <div class="task p1">
                     <div class="content-container">
                         <div class="task-checkbox"></div>
                         <div class="task-content">
@@ -197,11 +198,13 @@
                     <div class="task-meta">
                         <span class="task-date">Oct 26</span>
                         <span class="task-tag">read</span>
+                        <span class="task-tag">study</span>
+                        <span class="task-tag">play</span>
                     </div>
                 </div>
 
                 <!-- Example of overdue task -->
-                <div class="task overdue">
+                <div class="task overdue p2 ">
                     <div class="content-container">
                         <div class="task-checkbox"></div>
                         <div class="task-content">
@@ -215,9 +218,7 @@
                     </div>
                 </div>
 
-
-                <!-- Example of completed task -->
-                <div class="task important">
+                <div class="task p3">
                     <div class="content-container">
                         <div class="task-checkbox checked"></div>
                         <div class="task-content">
@@ -232,7 +233,7 @@
                 </div>
 
                 <!-- Example of completed task -->
-                <div class="task completed">
+                <div class="task completed p4">
                     <div class="content-container">
                         <div class="task-checkbox checked"></div>
                         <div class="task-content">
