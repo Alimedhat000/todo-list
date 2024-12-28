@@ -31,9 +31,12 @@ export class Todo {
 
     this.title = title;
     this.description = description;
-    this.due_date = due_date;
+    this.due_date = due_date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "2-digit",
+    });
     this.priority = priority;
-    this.status = this.STATUS.PENDING;
+    this.status = Todo.STATUS.PENDING;
     this.tags = tags;
   }
   toJSON() {
@@ -41,11 +44,11 @@ export class Todo {
   }
 
   markComplete() {
-    this.status = this.STATUS.COMPLETED;
+    this.status = Todo.STATUS.COMPLETED;
   }
 
   markInProgress() {
-    this.status = this.STATUS.IN_PROGRESS;
+    this.status = Todo.STATUS.IN_PROGRESS;
   }
 
   addTag(tag) {
@@ -66,7 +69,7 @@ export class Todo {
     return (
       this.due_date &&
       this.due_date < new Date() &&
-      this.status !== this.STATUS.COMPLETED
+      this.status !== Todo.STATUS.COMPLETED
     );
   }
 
