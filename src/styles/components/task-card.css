@@ -1,10 +1,13 @@
 /* Task List */
 .tasks-container {
   max-width: 800px;
+  width: 100%;
   margin: 20px auto;
+  padding: 0;
 }
 
 .task {
+  max-width: 800px;
   background: #ffffff;
   border-radius: 8px;
   border: 1px solid #e0e0e0;

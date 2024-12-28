@@ -42,9 +42,15 @@
   font-size: 24px;
   cursor: pointer;
   margin-bottom: 15px;
-  text-align: start;
-  padding-left: 15px;
+  text-align: end;
+  padding-right: 15px;
+  padding-left: 0;
   margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  text-align: right;
+  padding: 10px 15px;
 }
 
 .menu-button {
@@ -83,8 +89,6 @@
   gap: 8px;
 }
 
-
-
 /* Sidebar Menu Hover Effects */
 .menu li:not(#empty):hover {
   background-color: #f0f4fa; /* Soft blue background on hover */
@@ -102,7 +106,6 @@
   color: var(--blue);
 }
 
-
 /* Sidebar Menu Active State Enhancement */
 .menu li.active {
   background-color: #dce6f7;
@@ -113,4 +116,3 @@
 .menu li.active:hover {
   background-color: #c7d9f3;
 }
-
