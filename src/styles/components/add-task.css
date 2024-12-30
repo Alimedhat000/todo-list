@@ -311,7 +311,7 @@
 }
 
 .show-add-task-button > svg {
-  padding: 2.5px; /* Add default padding */
+  padding: 2.5px;
   border-radius: 50%;
   transition: all 0.2s ease-in-out;
 }
@@ -323,4 +323,12 @@
 
 .show-add-task-button:hover {
   color: var(--blue);
+}
+
+.show-add-task-button.hidden {
+  display: none;
+}
+
+.add-task-card.hidden {
+  display: none;
 }

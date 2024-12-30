@@ -16,6 +16,7 @@ export class TaskHandler {
     this.priorityDropdownspan =
       this.priorityDropdownButton.querySelector("span");
     this.tagsDropdownButton = document.querySelector("#tagsDropdown button");
+    this.showAddTaskButton = document.querySelector(".show-add-task-button");
 
     this.currentPriority = "none";
     this.currentDueDate = null;
@@ -28,9 +29,18 @@ export class TaskHandler {
   initializeEventListeners() {
     this.addTaskButton.addEventListener("click", () => this.handleAddTask());
     this.cancelButton.addEventListener("click", () => this.clearInputs());
+    this.showAddTaskButton.addEventListener("click", () =>
+      this.handleToggleShowAddTask()
+    );
     this.tasksContainer.addEventListener("click", (e) =>
       this.handleTaskClick(e)
     );
+  }
+
+  handleToggleShowAddTask() {
+    const addTaskCard = document.querySelector(".add-task-card");
+    addTaskCard.classList.toggle("hidden");
+    this.showAddTaskButton.classList.toggle("hidden");
   }
 
   handleAddTask() {
@@ -115,6 +125,7 @@ export class TaskHandler {
     this.currentPriority = "none";
     this.currentDueDate = null;
     this.currentTags.clear();
+    this.handleToggleShowAddTask();
   }
 
   resetTaskForm() {
