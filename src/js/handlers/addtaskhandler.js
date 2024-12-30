@@ -1,5 +1,5 @@
-import { Todo } from "./todo";
-import { makeTaskCard } from "./taskcardmaker";
+import { Todo } from "../models/todo";
+import { makeTaskCard } from "../components/taskcardmaker";
 
 export class TaskHandler {
   constructor(todoManager) {
@@ -55,6 +55,7 @@ export class TaskHandler {
 
       // Make the todo card in the DOM and add it to current Project
       // TODO add it to the project logic
+
       const taskCard = makeTaskCard(newTodo);
       this.tasksContainer.prepend(taskCard);
       this.clearInputs();

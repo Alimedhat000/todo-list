@@ -1,4 +1,4 @@
-import { Todo } from "./todo";
+import { Todo } from "../models/todo";
 
 export const makeTaskCard = (task) => {
   const card = document.createElement("div");
