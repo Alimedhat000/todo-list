@@ -291,3 +291,36 @@
 #tagsDropdown > .dropdown-content .dropdown-item svg {
   display: block;
 }
+
+.show-add-task-button {
+  background: var(--kinda_white);
+  border: none;
+  color: var(--grey);
+  padding: 6px 16px;
+  display: flex;
+  text-align: right;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.show-add-task-button > span {
+  margin-left: 6px;
+}
+
+.show-add-task-button > svg {
+  padding: 2.5px; /* Add default padding */
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+}
+
+.show-add-task-button:hover > svg {
+  color: var(--kinda_white);
+  background: var(--blue);
+}
+
+.show-add-task-button:hover {
+  color: var(--blue);
+}
