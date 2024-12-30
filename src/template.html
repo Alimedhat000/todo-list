@@ -14,7 +14,17 @@
     <div class="task-manager">
         <!-- Sidebar -->
         <aside class="sidebar">
-            <button class="menu-toggle-button">☰</button>
+            <div class="menu-toggle-container">
+                <button class="menu-toggle-button"><svg width="25" height="25" viewBox="0 0 25 25" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.125 12.5H21.875" stroke="#414141" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M3.125 6.25H21.875" stroke="#414141" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M3.125 18.75H21.875" stroke="#414141" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg></button>
+            </div>
             <ul class="menu">
                 <li>
                     <button class="menu-button">
@@ -38,7 +48,8 @@
                             <path
                                 d="M10.5664 6.90372C11.3858 4.86101 11.7955 3.83966 12.5 3.83966C13.2045 3.83966 13.6142 4.86101 14.4336 6.90372L14.4717 6.99884C14.9346 8.15287 15.1661 8.72989 15.6378 9.0806C16.1095 9.43132 16.7288 9.48678 17.9672 9.59769L18.1911 9.61774C20.218 9.79927 21.2314 9.89003 21.4483 10.5348C21.6651 11.1796 20.9125 11.8643 19.4073 13.2338L18.9049 13.6908C18.1429 14.3841 17.7619 14.7307 17.5843 15.185C17.5512 15.2697 17.5237 15.3566 17.5019 15.4449C17.3852 15.9185 17.4967 16.4214 17.7199 17.4271L17.7893 17.7401C18.1994 19.5884 18.4044 20.5125 18.0464 20.9111C17.9127 21.0601 17.7388 21.1673 17.5457 21.22C17.0288 21.361 16.295 20.7631 14.8273 19.5672C13.8636 18.7819 13.3817 18.3892 12.8285 18.3009C12.6109 18.2661 12.3891 18.2661 12.1715 18.3009C11.6183 18.3892 11.1364 18.7819 10.1727 19.5672C8.70504 20.7631 7.97121 21.361 7.45433 21.22C7.26119 21.1673 7.08733 21.0601 6.95355 20.9111C6.59555 20.5125 6.80059 19.5884 7.21067 17.7401L7.28012 17.4271C7.50326 16.4214 7.61482 15.9185 7.4981 15.4449C7.47633 15.3566 7.44879 15.2697 7.41566 15.185C7.23809 14.7307 6.85709 14.3841 6.09511 13.6908L5.59273 13.2338C4.08748 11.8643 3.33485 11.1796 3.5517 10.5348C3.76856 9.89003 4.782 9.79927 6.80889 9.61774L7.03278 9.59769C8.27124 9.48678 8.89046 9.43132 9.36218 9.0806C9.8339 8.72989 10.0654 8.15287 10.5283 6.99884L10.5664 6.90372Z"
                                 stroke="#414141" />
-                        </svg> <span>Important</span>
+                        </svg>
+                        <span>Important</span>
                     </button>
                 </li>
                 <li>
@@ -57,7 +68,8 @@
                             <path d="M14.5833 15.625H18.75" stroke="#414141" stroke-width="1" stroke-linecap="round" />
                             <path d="M6.25 18.75H10.4167" stroke="#414141" stroke-width="1" stroke-linecap="round" />
                             <path d="M14.5833 18.75H18.75" stroke="#414141" stroke-width="1" stroke-linecap="round" />
-                        </svg> <span>Planned</span>
+                        </svg>
+                        <span>Planned</span>
                     </button>
                 </li>
                 <li class="active">
@@ -81,17 +93,6 @@
                         <path d="M18.75 12.5L6.25 12.5" stroke="#2564CF" stroke-linecap="round" />
                     </svg> <span>New List</span>
                 </div>
-                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M12.5 4.16667H12.1667C8.39544 4.16667 6.50982 4.16667 5.33824 5.33824C4.16667 6.50981 4.16667 8.39543 4.16667 12.1667V18.8333C4.16667 19.7761 4.16667 20.2475 4.45956 20.5404C4.75246 20.8333 5.22386 20.8333 6.16667 20.8333H12.8333C16.6046 20.8333 18.4902 20.8333 19.6618 19.6618C20.8333 18.4902 20.8333 16.6046 20.8333 12.8333V12.5"
-                        stroke="#2564CF" stroke-width="1.2" />
-                    <path d="M9.375 10.4167L15.625 10.4167" stroke="#2564CF" stroke-width="1.2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M9.375 14.5833H12.5" stroke="#2564CF" stroke-width="1.2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M19.7917 8.33333L19.7917 2.08333M16.6667 5.20833H22.9167" stroke="#2564CF"
-                        stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
             </button>
         </aside>
 
@@ -140,14 +141,15 @@
                 <input type="text" class="task-input" placeholder="Task Name">
                 <input type="text" class="task-description" placeholder="Description">
                 <div class="buttons-row">
-                    <button class="action-button">
+                    <div class="action-button">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <circle cx="12" cy="12" r="10" />
                             <path d="M12 6v6l4 2" />
                         </svg>
-                        Due date
-                    </button>
+                        <input type="date" name="" id="" placeholder="">
+                    </div>
+
                     <button class="action-button">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
@@ -157,7 +159,7 @@
                         Priority
                     </button>
                     <button class="action-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-5 0 16 12"
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-2 0 16 12"
                             class="icon">
                             <path fill="currentColor" fill-rule="evenodd"
                                 d="M9.357 1C10.264 1 11 1.736 11 2.643V6.07c0 .436-.173.854-.481 1.162L7.232 10.52a1.643 1.643 0 0 1-2.323 0L1.48 7.09c-.64-.64-.64-1.68.001-2.322L4.768 1.48C5.076 1.173 5.494 1 5.93 1h3.427zm-.07.91H5.93a.805.805 0 0 0-.569.235L2.145 5.362a.805.805 0 0 0 0 1.138L5.5 9.855a.805.805 0 0 0 1.138 0l3.217-3.217a.805.805 0 0 0 .236-.569V2.713a.804.804 0 0 0-.804-.804zM7.364 3.726a.91.91 0 1 1 0 1.818.91.91 0 0 1 0-1.818z">
@@ -216,7 +218,7 @@
 
                 <div class="task p3">
                     <div class="content-container">
-                        <div class="task-checkbox checked"></div>
+                        <div class="task-checkbox"></div>
                         <div class="task-content">
                             <div class="task-title">Completed task example</div>
                             <div class="task-description">This shows how a completed task looks</div>
@@ -242,6 +244,7 @@
                         <span class="task-tag">read</span>
                     </div>
                 </div>
+            </div>
         </main>
     </div>
 </body>

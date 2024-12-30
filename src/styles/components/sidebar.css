@@ -1,18 +1,84 @@
 .sidebar {
   background: #ffffff;
   width: 250px;
-  padding: 40px 15px;
+  padding: 40px 5px;
   display: flex;
   flex-direction: column;
   box-shadow: 4px 0 20px -10px rgba(0, 0, 0, 0.25);
   z-index: 2;
   height: 100%;
-  overflow-y: auto;
+  transition: all 0.3s ease-in-out;
+  text-wrap: nowrap;
+  overflow: hidden;
+}
+
+.menu-new-button {
+  text-wrap: nowrap;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  white-space: nowrap;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+  padding: 40px 5px;
+}
+
+.menu-toggle-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.menu-toggle-button {
+  transition: transform 0.3s ease-out;
+}
+
+.menu-toggle-button.rotated {
+  padding: 10px 12.5px;
+  transform: rotate(90deg);
+  transform-origin: 50% 50% 50%;
+}
+
+.sidebar.collapsed .menu-button span,
+.sidebar.collapsed .menu-new-button span {
+  opacity: 0;
+  width: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.sidebar.collapsed .menu-button {
+  gap: 0;
+}
+
+.sidebar .menu-button svg,
+.sidebar .menu-new-button svg {
+  min-width: 25px;
+  width: 25px;
+}
+
+.sidebar.collapsed .menu li:not(#empty) {
+  justify-content: center;
+  align-content: center;
+  gap: 0;
+}
+
+.sidebar.collapsed .menu-new-button {
+  justify-content: flex-start;
+  padding: 10px 12.5px;
+}
+
+.sidebar.collapsed .menu-new-button > div {
+  gap: 0;
+  min-width: 25px;
+  width: 25px;
 }
 
 .menu {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   margin: 20px 0 0;
 }
 
@@ -21,13 +87,12 @@
   justify-content: start;
   align-items: center;
   gap: 8px;
-  padding: 10px 15px;
   cursor: pointer;
 }
 
-.menu li:last-child {
+.menu li:last-child,
+.menu.sidebar.collapsed li:last-child {
   border-bottom: 1px solid #d1d1d1;
-  padding-top: 15px;
 }
 
 .menu li.active {
@@ -46,10 +111,9 @@
   padding-right: 15px;
   padding-left: 0;
   margin: 0;
-  width: 100%;
   display: flex;
   justify-content: flex-start;
-  text-align: right;
+  text-align: center;
   padding: 10px 15px;
 }
 
@@ -62,31 +126,66 @@
   padding: 0;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
+  padding: 10px 12.5px;
   gap: 20px;
   width: 100%;
   color: #414141;
+  transition: all 0.3s ease;
 }
 
 .menu-new-button {
-  padding: 10px 15px;
+  padding: 10px 12.5px;
   background: none;
   border: none;
   cursor: pointer;
   font-size: 17px;
   display: flex;
   text-align: start;
-  justify-content: space-between;
+  justify-content: flex-start;
   color: var(--blue);
   width: 100%;
   border-radius: 8px;
   transition: background-color 0.3s ease;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .menu-new-button > div {
   display: flex;
   align-items: center;
   gap: 8px;
+  transition: gap 0.3s ease;
+  transition: all 0.3s ease-in-out;
+  min-width: 25px; /* Ensure icon space */
+}
+
+.menu-button span,
+.menu-new-button span {
+  opacity: 1;
+  width: auto;
+  transition: opacity 0.3s ease-in-out;
+  white-space: nowrap;
+}
+
+.sidebar.collapsed .menu-new-button span {
+  opacity: 0;
+  width: 0;
+  margin: 0;
+}
+
+.sidebar.collapsed .menu-new-button svg:last-child {
+  width: 0;
+  opacity: 0;
+  margin: 0;
+  transition: opacity 0.2s ease-in-out, width 0.2s ease-in-out;
+}
+
+.menu-new-button svg:last-child {
+  opacity: 1;
+  width: 25px;
+  transition: opacity 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 
 /* Sidebar Menu Hover Effects */
