@@ -54,6 +54,7 @@
 
 .buttons-row {
   display: flex;
+  align-items: center;
   gap: 8px;
   margin-bottom: 16px;
 }
@@ -61,7 +62,8 @@
 .action-button {
   display: flex;
   align-items: center;
-  gap: 8px;
+  height: 100%;
+  gap: 2px;
   background: transparent;
   border: none;
   color: var(--grey);
@@ -164,4 +166,103 @@
 .add-task-button:hover {
   background: #1a4fa6;
   transform: translateY(-1px);
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 160px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  z-index: 100;
+  margin-top: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.dropdown-content.active {
+  display: block;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+.dropdown-item {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: #f5f5f5;
+}
+
+.dropdown input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.dropdown-item.selected {
+  background: #f0f4fa;
+  color: var(--blue);
+}
+
+.dropdown-item svg {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Priority colors */
+.dropdown-item[data-priority="high"] {
+  color: #d84c4c;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dropdown-item[data-priority="medium"] {
+  color: #e9a321;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dropdown-item[data-priority="low"] {
+  color: #4caf50;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dropdown-item[data-priority="none"] {
+  color: var(--grey);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Tags input styling */
+#newTagInput {
+  width: calc(100% - 16px);
+  margin: 8px;
+  padding: 4px 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+#newTagInput:focus {
+  outline: none;
+  border-color: var(--blue);
 }

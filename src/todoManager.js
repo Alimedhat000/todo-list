@@ -1,4 +1,4 @@
-class TodoManager {
+export class TodoManager {
   constructor(ProjectClass, TodoClass) {
     // Use Dependency Injdection to allow improvalbity in the future and
     // make the classes less coupled
