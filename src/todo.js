@@ -4,7 +4,7 @@ export class Todo {
     IN_PROGRESS: "in progress",
     COMPLETED: "completed",
   };
-  static PRIORITIES = ["low", "medium", "high"];
+  static PRIORITIES = ["none", "low", "medium", "high"];
 
   constructor(
     title,

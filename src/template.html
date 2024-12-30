@@ -141,7 +141,7 @@
                 <input type="text" class="task-input" placeholder="Task Name">
                 <input type="text" class="task-description" placeholder="Description">
                 <div class="buttons-row">
-                    <div class="action-button">
+                    <div class="action-button" id="dateButton">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <circle cx="12" cy="12" r="10" />
@@ -164,7 +164,7 @@
                             <div class="dropdown-item" data-priority="high">🔴 High</div>
                             <div class="dropdown-item" data-priority="medium">🟡 Medium</div>
                             <div class="dropdown-item" data-priority="low">🟢 Low</div>
-                            <div class="dropdown-item" data-priority="none">🔵 None</div>
+                            <div class="dropdown-item" data-priority="none">None</div>
                         </div>
                     </div>
                     <div class="dropdown" id="tagsDropdown">
@@ -179,9 +179,58 @@
                         </button>
                         <div class="dropdown-content">
                             <input type="text" placeholder="Add new tag" id="newTagInput">
-                            <div class="dropdown-item">Work</div>
-                            <div class="dropdown-item">Personal</div>
-                            <div class="dropdown-item">Important</div>
+                            <div class="dropdown-item">
+                                <span>Work</span>
+                                <button><svg width="25" height="25" viewBox="0 0 25 25" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9.89575 15.1042L9.89575 11.9792" stroke="#d84c4c"
+                                            stroke-linecap="round" />
+                                        <path d="M15.1042 15.1042L15.1042 11.9792" stroke="#d84c4c"
+                                            stroke-linecap="round" />
+                                        <path
+                                            d="M3.125 6.77083H21.875V6.77083C20.3312 6.77083 19.5594 6.77083 19.0247 7.17421C18.8764 7.28608 18.7444 7.41805 18.6326 7.56633C18.2292 8.10103 18.2292 8.87291 18.2292 10.4167V16.3125C18.2292 18.1981 18.2292 19.1409 17.6434 19.7267C17.0576 20.3125 16.1148 20.3125 14.2292 20.3125H10.7708C8.88521 20.3125 7.94241 20.3125 7.35662 19.7267C6.77083 19.1409 6.77083 18.1981 6.77083 16.3125V10.4167C6.77083 8.87291 6.77083 8.10103 6.36745 7.56633C6.25558 7.41805 6.12361 7.28608 5.97533 7.17421C5.44063 6.77083 4.66875 6.77083 3.125 6.77083V6.77083Z"
+                                            stroke="#d84c4c" stroke-linecap="round" />
+                                        <path
+                                            d="M9.89591 3.64609C9.89591 3.64609 10.4167 2.60417 12.5001 2.60417C14.5834 2.60417 15.1042 3.64584 15.1042 3.64584"
+                                            stroke="#d84c4c" stroke-linecap="round" />
+                                    </svg> </button>
+                            </div>
+                            <div class="dropdown-item">
+                                <span>Personal</span>
+                                <button>
+                                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9.89575 15.1042L9.89575 11.9792" stroke="#d84c4c"
+                                            stroke-linecap="round" />
+                                        <path d="M15.1042 15.1042L15.1042 11.9792" stroke="#d84c4c"
+                                            stroke-linecap="round" />
+                                        <path
+                                            d="M3.125 6.77083H21.875V6.77083C20.3312 6.77083 19.5594 6.77083 19.0247 7.17421C18.8764 7.28608 18.7444 7.41805 18.6326 7.56633C18.2292 8.10103 18.2292 8.87291 18.2292 10.4167V16.3125C18.2292 18.1981 18.2292 19.1409 17.6434 19.7267C17.0576 20.3125 16.1148 20.3125 14.2292 20.3125H10.7708C8.88521 20.3125 7.94241 20.3125 7.35662 19.7267C6.77083 19.1409 6.77083 18.1981 6.77083 16.3125V10.4167C6.77083 8.87291 6.77083 8.10103 6.36745 7.56633C6.25558 7.41805 6.12361 7.28608 5.97533 7.17421C5.44063 6.77083 4.66875 6.77083 3.125 6.77083V6.77083Z"
+                                            stroke="#d84c4c" stroke-linecap="round" />
+                                        <path
+                                            d="M9.89591 3.64609C9.89591 3.64609 10.4167 2.60417 12.5001 2.60417C14.5834 2.60417 15.1042 3.64584 15.1042 3.64584"
+                                            stroke="#d84c4c" stroke-linecap="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="dropdown-item">
+                                <span>Important</span>
+                                <button>
+                                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9.89575 15.1042L9.89575 11.9792" stroke="#d84c4c"
+                                            stroke-linecap="round" />
+                                        <path d="M15.1042 15.1042L15.1042 11.9792" stroke="#d84c4c"
+                                            stroke-linecap="round" />
+                                        <path
+                                            d="M3.125 6.77083H21.875V6.77083C20.3312 6.77083 19.5594 6.77083 19.0247 7.17421C18.8764 7.28608 18.7444 7.41805 18.6326 7.56633C18.2292 8.10103 18.2292 8.87291 18.2292 10.4167V16.3125C18.2292 18.1981 18.2292 19.1409 17.6434 19.7267C17.0576 20.3125 16.1148 20.3125 14.2292 20.3125H10.7708C8.88521 20.3125 7.94241 20.3125 7.35662 19.7267C6.77083 19.1409 6.77083 18.1981 6.77083 16.3125V10.4167C6.77083 8.87291 6.77083 8.10103 6.36745 7.56633C6.25558 7.41805 6.12361 7.28608 5.97533 7.17421C5.44063 6.77083 4.66875 6.77083 3.125 6.77083V6.77083Z"
+                                            stroke="#d84c4c" stroke-linecap="round" />
+                                        <path
+                                            d="M9.89591 3.64609C9.89591 3.64609 10.4167 2.60417 12.5001 2.60417C14.5834 2.60417 15.1042 3.64584 15.1042 3.64584"
+                                            stroke="#d84c4c" stroke-linecap="round" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <button class="action-button">

@@ -12,13 +12,13 @@ export const makeTaskCard = (task) => {
   }
 
   switch (task.priority) {
-    case Todo.PRIORITIES[0]:
+    case Todo.PRIORITIES[1]:
       card.classList.add("p4");
       break;
-    case Todo.PRIORITIES[1]:
+    case Todo.PRIORITIES[2]:
       card.classList.add("p3");
       break;
-    case Todo.PRIORITIES[2]:
+    case Todo.PRIORITIES[3]:
       card.classList.add("p2");
       break;
     default:
