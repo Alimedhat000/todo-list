@@ -20,14 +20,8 @@ export class taskButtonHandler {
     const taskId = taskCard.dataset.taskId || taskCard.id;
 
     if (this.todoManager && this.todoManager.activeProject) {
-      // Remove from TodoManager/Storage
-      this.todoManager.activeProject.todos =
-        this.todoManager.activeProject.todos.filter(
-          (todo) => todo.id !== taskId
-        );
-
-      // Save changes
-      this.todoManager.saveToStorage();
+      // Remove from TodoManager
+      this.todoManager.removeTodo(taskId);
 
       // Remove from UI with animation
       taskCard.style.opacity = "0";

@@ -137,7 +137,7 @@ export class TodoManager {
 
   removeTodo(id) {
     this.activeProject.todos = this.activeProject.todos.filter(
-      (t) => t !== todo.id
+      (t) => t.id !== id
     );
     this.saveToStorage();
   }
