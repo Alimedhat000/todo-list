@@ -5,7 +5,9 @@ export class TaskHandler {
   constructor(todoManager) {
     this.todoManager = todoManager;
     this.taskInput = document.querySelector(".task-input");
-    this.taskDescription = document.querySelector(".task-description");
+    this.taskDescription = document.querySelector(
+      ".add-task-card .task-description"
+    );
     this.addTaskButton = document.querySelector(".add-task-button");
     this.cancelButton = document.querySelector(".cancel-button");
     this.tasksContainer = document.querySelector(".tasks-container");

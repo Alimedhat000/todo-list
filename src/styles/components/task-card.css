@@ -244,7 +244,6 @@
   background: #a8a8a8;
 }
 
-/* Tag styling */
 .task-tag {
   color: var(--darkish_grey);
   background: #f0f4fa;
@@ -254,8 +253,18 @@
   transition: all 0.2s ease;
 }
 
-/* Tag hover effect */
 .task-tag:hover {
   transform: translateY(-1px);
   cursor: pointer;
+}
+
+.task-editor,
+.task-delete {
+  color: var(--grey);
+  transition: 0.3s all ease;
+}
+
+.task-editor:hover,
+.task-delete:hover {
+  color: var(--darkish_grey);
 }
