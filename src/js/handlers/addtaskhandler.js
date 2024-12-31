@@ -37,8 +37,27 @@ export class TaskHandler {
     this.tasksContainer.addEventListener("click", (e) =>
       this.handleTaskClick(e)
     );
+    this.ClosingListener();
   }
+  ClosingListener() {
+    document.addEventListener("click", (e) => {
+      const addTaskCard = document.querySelector(".add-task-card");
+      const showAddTaskButton = document.querySelector(".show-add-task-button");
 
+      // Check if card exists and click is outside card
+      if (
+        addTaskCard &&
+        !addTaskCard.contains(e.target) &&
+        !showAddTaskButton.contains(e.target) &&
+        !addTaskCard.classList.contains("hidden")
+      ) {
+        addTaskCard.classList.add("hidden");
+        showAddTaskButton.classList.remove("hidden");
+        this.clearInputs();
+        this.resetTaskForm();
+      }
+    });
+  }
   handleToggleShowAddTask() {
     const addTaskCard = document.querySelector(".add-task-card");
     addTaskCard.classList.toggle("hidden");
