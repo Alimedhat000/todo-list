@@ -59,11 +59,9 @@ export class TaskHandler {
         this.taskInput.value,
         this.taskDescription.value,
         this.currentDueDate,
-        this.currentPriority
+        this.currentPriority,
+        Array.from(this.currentTags)
       );
-
-      // Add tags to the todo
-      newTodo.tags = Array.from(this.currentTags);
 
       // Make the todo card in the DOM and add it to current Project
       // TODO add it to the project logic

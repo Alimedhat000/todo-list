@@ -1,4 +1,5 @@
 import { StorageService } from "./storageservice";
+import { makeTaskCard } from "../components/taskcardmaker";
 
 export class TodoManager {
   constructor(ProjectClass, TodoClass) {
@@ -16,12 +17,12 @@ export class TodoManager {
     // this.activeProject = this.defaultProject;
     this.activeProject = null;
     this.loadFromStorage();
+    this.renderSavedTasks();
   }
 
   loadFromStorage() {
     const savedProjects = StorageService.loadProjects();
 
-    // If there are no saved projects, create a default project
     if (savedProjects.length === 0) {
       this.defaultProject = new this.ProjectClass("Home", "Default project");
       this.projects = [this.defaultProject];
@@ -34,6 +35,8 @@ export class TodoManager {
         );
         project.id = projectData.id;
         project.todos = projectData.todos.map((todoData) => {
+          console.log("Todo data being loaded:", todoData);
+          console.log("Tags from storage:", todoData.tags);
           const todo = new this.TodoClass(
             todoData.title,
             todoData.description,
@@ -41,7 +44,10 @@ export class TodoManager {
             todoData.priority,
             todoData.tags
           );
+          todo.id = todoData.id;
           todo.status = todoData.status;
+          console.log("Created todo object:", todo);
+          console.log("Tags after creation:", todo.tags);
           return todo;
         });
         return project;
@@ -49,6 +55,18 @@ export class TodoManager {
       this.activeProject = this.projects[0];
     }
     this.saveToStorage();
+  }
+
+  renderSavedTasks() {
+    const tasksContainer = document.querySelector(".tasks-container");
+    // tasksContainer.innerHTML = ""; // Clear existing content
+
+    if (this.activeProject && this.activeProject.todos.length > 0) {
+      this.activeProject.todos.forEach((todo) => {
+        const taskCard = makeTaskCard(todo);
+        tasksContainer.appendChild(taskCard);
+      });
+    }
   }
 
   saveToStorage() {
@@ -78,22 +96,16 @@ export class TodoManager {
       throw new Error("Cannot Remove Default Project");
     }
     this.projects = this.projects.filter((p) => p !== project);
-    
+
     // Handle active project when removed
     if (project === this.activeProject) {
       this.activeProject = this.projects[0] || null;
     }
-    
+
     this.saveToStorage();
   }
 
-  createTodo(
-    title,
-    description = "",
-    due_date = null,
-    priority = "low",
-    tags = []
-  ) {
+  createTodo(title, description = "", due_date = null, priority = "low", tags) {
     if (!this.TodoClass.PRIORITIES.includes(priority)) {
       throw new Error(
         `Invalid priority. Allowed priorities are: ${this.TodoClass.PRIORITIES.join(
@@ -123,8 +135,10 @@ export class TodoManager {
     this.saveToStorage();
   }
 
-  removeTodo(todo) {
-    this.activeProject.todos = this.activeProject.todos.filter(t => t !== todo);
+  removeTodo(id) {
+    this.activeProject.todos = this.activeProject.todos.filter(
+      (t) => t !== todo.id
+    );
     this.saveToStorage();
   }
 }

@@ -31,18 +31,23 @@ export class Todo {
 
     this.title = title;
     this.description = description;
+    this.dateObj = due_date;
     this.due_date = due_date.toLocaleDateString("en-US", {
       month: "short",
       day: "2-digit",
     });
     this.priority = priority;
     this.status = Todo.STATUS.PENDING;
-    this.tags = tags;
+    this.tags = Array.isArray(tags) ? [...tags] : [];
+    this.id = `task-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
   }
   toJSON() {
     return JSON.stringify(this);
   }
 
+  getID() {
+    return this.id;
+  }
   markComplete() {
     this.status = Todo.STATUS.COMPLETED;
   }

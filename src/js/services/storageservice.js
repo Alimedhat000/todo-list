@@ -5,6 +5,7 @@ export class StorageService {
 
   static load(key) {
     const data = localStorage.getItem(key);
+
     return data ? JSON.parse(data) : null;
   }
 
@@ -25,11 +26,12 @@ export class StorageService {
         name: project.name,
         description: project.description,
         todos: project.todos.map((todo) => ({
+          id: todo.id,
           title: todo.title,
           description: todo.description,
-          due_date: todo.due_date,
+          due_date: todo.dateObj.toISOString(), // Save as ISO string
           priority: todo.priority,
-          tags: todo.tags,
+          tags: todo.tags, // Ensure tags are serialized as array
           status: todo.status,
         })),
       }))
@@ -37,6 +39,8 @@ export class StorageService {
   }
 
   static loadProjects() {
-    return this.load("projects") || [];
+    const data = this.load("projects");
+    console.log("Raw loaded data:", data);
+    return data || [];
   }
 }
