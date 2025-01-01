@@ -23,7 +23,7 @@ export function createEditTaskCard(task = null) {
   buttonsRow.className = "buttons-row";
 
   // Date button with initial date
-  const dateButton = createDateButton();
+  const dateButton = createDateButton(task);
 
   // Priority dropdown with initial priority
   const priorityDropdown = createPriorityDropdown(task?.priority || "none");
@@ -47,7 +47,7 @@ export function createEditTaskCard(task = null) {
   return section;
 }
 
-function createDateButton() {
+function createDateButton(task) {
   const dateButton = document.createElement("div");
   dateButton.className = "action-button";
   dateButton.id = "dateButton";
@@ -62,7 +62,7 @@ function createDateButton() {
             <path d="M12 6v6l4 2" />
         </svg>
         <input type="date" placeholder="dd/mm/yyyy" 
-               value="" 
+               value="${task.dateObj.toISOString().substr(0, 10)}" 
                min="${today}" 
                max="${nextYear.toISOString().split("T")[0]}" 
                pattern="\\d{2}/\\d{2}/\\d{4}">
@@ -83,13 +83,21 @@ function createPriorityDropdown(initialPriority = "none") {
     low: "🟢",
     none: "",
   };
+  const priorityColors = {
+    high: "var(--priority-1)",
+    medium: "var(--priority-2)",
+    low: "var(--priority-3)",
+    none: "var(--grey)",
+  };
 
   const currentPriorityEmoji = priorities[initialPriority] || "";
   const currentPriorityText =
     initialPriority.charAt(0).toUpperCase() + initialPriority.slice(1);
 
   dropdown.innerHTML = `
-        <button class="action-button">
+        <button class="action-button" style="color: ${
+          priorityColors[initialPriority]
+        }">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
                 <line x1="4" y1="22" x2="4" y2="15" />
@@ -119,9 +127,13 @@ function createTagsDropdown(initialTags = []) {
   const dropdown = document.createElement("div");
   dropdown.className = "dropdown";
   dropdown.id = "tagsDropdown";
+  let tagscolor = "var(--grey)";
+  if (initialTags.length !== 0) {
+    tagscolor = "var(--blue)";
+  }
 
   dropdown.innerHTML = `
-        <button class="action-button">
+        <button class="action-button" style="color: ${tagscolor}">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-2 0 16 12"
                                 class="icon">
                                 <path fill="currentColor" fill-rule="evenodd"

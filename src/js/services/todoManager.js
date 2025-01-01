@@ -7,14 +7,7 @@ export class TodoManager {
     // make the classes less coupled
     this.ProjectClass = ProjectClass;
     this.TodoClass = TodoClass;
-
-    // this.defaultProject = new this.ProjectClass(
-    //   "Home",
-    //   "Default project for all todos"
-    // );
-    // this.projects = [this.defaultProject];
     this.projects = [];
-    // this.activeProject = this.defaultProject;
     this.activeProject = null;
     this.loadFromStorage();
     this.renderSavedTasks();
@@ -140,5 +133,8 @@ export class TodoManager {
       (t) => t.id !== id
     );
     this.saveToStorage();
+  }
+  findtask(id) {
+    return this.activeProject.todos.find((todo) => todo.id === id);
   }
 }

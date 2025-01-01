@@ -12,6 +12,10 @@ export class TaskHandler {
     this.cancelButton = document.querySelector(".cancel-button");
     this.tasksContainer = document.querySelector(".tasks-container");
     this.dueDateButton = document.querySelector("#dateButton");
+    var today = new Date();
+    this.dueDateButton.querySelector("input").value = today
+      .toISOString()
+      .substr(0, 10);
     this.priorityDropdownButton = document.querySelector(
       "#priorityDropdown button"
     );
