@@ -7,30 +7,30 @@ export class taskButtonHandler {
 
   setupEventListeners() {
     this.taskContainer.addEventListener("click", (e) => {
-      if (e.target.closest(".task-delete")) {
-        this.handleDelete(e);
-      }
+      handleDelete(e);
     });
   }
 
   handleDelete(e) {
-    const taskCard = e.target.closest(".task");
-    if (!taskCard) return;
+    if (e.target.closest(".task-delete")) {
+      const taskCard = e.target.closest(".task");
+      if (!taskCard) return;
 
-    const taskId = taskCard.dataset.taskId || taskCard.id;
+      const taskId = taskCard.id;
 
-    if (this.todoManager && this.todoManager.activeProject) {
-      // Remove from TodoManager
-      this.todoManager.removeTodo(taskId);
+      if (this.todoManager && this.todoManager.activeProject) {
+        // Remove from TodoManager
+        this.todoManager.removeTodo(taskId);
 
-      // Remove from UI with animation
-      taskCard.style.opacity = "0";
-      taskCard.style.transform = "translateX(20px)";
-      setTimeout(() => {
-        taskCard.remove();
-      }, 300);
-    } else {
-      console.error("TodoManager or active project is not initialized");
+        // Remove from UI with animation
+        taskCard.style.opacity = "0";
+        taskCard.style.transform = "translateX(20px)";
+        setTimeout(() => {
+          taskCard.remove();
+        }, 300);
+      } else {
+        console.error("TodoManager or active project is not initialized");
+      }
     }
   }
 }
