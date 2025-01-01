@@ -4,20 +4,93 @@ import { createEditTaskCard } from "../components/taskeditormaker";
 export class taskButtonHandler {
   constructor(todoManager) {
     this.taskContainer = document.querySelector(".tasks-container");
+    this.completedbutton = document.querySelector(".completed-button");
+    this.completedTasks = document.querySelector("#completedTasks");
+    this.completedContainer = document.getElementById("completedTasks");
+    this.taskCount = document.querySelector(".task-count");
     this.todoManager = todoManager;
     this.currentPriority = "none";
     this.currentTags = new Set();
+    this.updateCompletedCount();
     this.setupEventListeners();
   }
 
   setupEventListeners() {
-    this.taskContainer.addEventListener("click", (e) => {
-      if (e.target.closest(".task-delete")) {
-        this.handleDelete(e);
-      }
-      if (e.target.closest(".task-editor")) {
-        this.handleEdit(e);
-      }
+    this.completedbutton.addEventListener("click", () =>
+      this.handleCompleted()
+    );
+
+    [this.taskContainer, this.completedContainer].forEach((container) => {
+      container.addEventListener("click", (e) => {
+        if (e.target.closest(".task-checkbox")) {
+          this.handleTaskCheck(e);
+        }
+        if (e.target.closest(".task-delete")) {
+          this.handleDelete(e);
+        }
+        if (e.target.closest(".task-editor")) {
+          this.handleEdit(e);
+        }
+      });
+    });
+  }
+
+  handleTaskCheck(e) {
+    const taskElement = e.target.closest(".task");
+    if (!taskElement) return;
+
+    const taskId = taskElement.id;
+    const task = this.todoManager.toggleTodoStatus(taskId);
+    const checkbox = taskElement.querySelector(".task-checkbox");
+
+    if (task.status === "completed") {
+      taskElement.classList.add("completed");
+      checkbox.classList.add("checked");
+      taskElement.style.opacity = "0";
+      taskElement.style.transform = "translateY(20px)";
+      setTimeout(() => {
+        taskElement.remove();
+        if (this.completedContainer.classList.contains("show")) {
+          this.renderCompletedTasks();
+        }
+      }, 300);
+    } else {
+      taskElement.classList.remove("completed");
+      checkbox.classList.remove("checked");
+      taskElement.style.opacity = "0";
+      taskElement.style.transform = "translateY(-20px)";
+      setTimeout(() => {
+        taskElement.remove();
+        this.taskContainer.prepend(taskElement);
+        taskElement.style.opacity = "1";
+        taskElement.style.transform = "translateY(0)";
+      }, 300);
+    }
+    this.updateCompletedCount();
+  }
+
+  updateCompletedCount() {
+    const completedCount = this.todoManager.getCompletedTodos().length;
+    this.taskCount.textContent = completedCount;
+  }
+
+  handleCompleted() {
+    const chevron = document.querySelector(".chevron");
+    chevron.classList.toggle("expanded");
+    this.completedTasks.classList.toggle("show");
+    if (this.completedContainer.classList.contains("show")) {
+      this.renderCompletedTasks();
+    }
+  }
+
+  renderCompletedTasks() {
+    const completedTasks = this.todoManager.getCompletedTodos();
+    this.completedContainer.innerHTML = "";
+
+    completedTasks.forEach((task) => {
+      const taskCard = makeTaskCard(task);
+      taskCard.classList.add("completed");
+      this.completedContainer.appendChild(taskCard);
     });
   }
 

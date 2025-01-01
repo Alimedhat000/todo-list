@@ -38,11 +38,9 @@ export class TaskHandler {
     this.showAddTaskButton.addEventListener("click", () =>
       this.handleToggleShowAddTask()
     );
-    this.tasksContainer.addEventListener("click", (e) =>
-      this.handleTaskClick(e)
-    );
     this.ClosingListener();
   }
+
   ClosingListener() {
     document.addEventListener("click", (e) => {
       const addTaskCard = document.querySelector(".add-task-card");
@@ -62,6 +60,7 @@ export class TaskHandler {
       }
     });
   }
+
   handleToggleShowAddTask() {
     const addTaskCard = document.querySelector(".add-task-card");
     addTaskCard.classList.toggle("hidden");
@@ -86,34 +85,14 @@ export class TaskHandler {
         Array.from(this.currentTags)
       );
 
-      // Make the todo card in the DOM and add it to current Project
-      // TODO add it to the project logic
-
       const taskCard = makeTaskCard(newTodo);
       this.tasksContainer.prepend(taskCard);
+      this.handleToggleShowAddTask();
       this.clearInputs();
       this.resetTaskForm();
     } catch (error) {
       console.error("Failed to create task:", error);
     }
-  }
-
-  handleTaskClick(e) {
-    const taskElement = e.target.closest(".task");
-    if (!taskElement) return;
-
-    if (e.target.classList.contains("task-checkbox")) {
-      this.toggleTaskComplete(taskElement);
-    }
-  }
-
-  toggleTaskComplete(taskElement) {
-    const checkbox = taskElement.querySelector(".task-checkbox");
-    checkbox.classList.toggle("checked");
-    taskElement.classList.toggle("completed");
-
-    // TODO Update the todo object in the active project
-    // You would need to add an id to the task element to properly identify it
   }
 
   clearInputs() {
@@ -140,8 +119,9 @@ export class TaskHandler {
     // Reset date
     this.dueDateButton.classList.remove("active");
     const dateInput = this.dueDateButton.querySelector('input[type="date"]');
+    const today = new Date();
     if (dateInput) {
-      dateInput.value = "";
+      dateInput.value = `${today.toISOString().substr(0, 10)}`;
     }
 
     // Reset internal state

@@ -7,8 +7,9 @@ export const makeTaskCard = (task) => {
   const card_checkbox = document.createElement("div");
   card_checkbox.classList.add("task-checkbox");
 
-  if (task.status === Todo.STATUS.COMPLETED) {
-    card_checkbox.classList.add("completed");
+  if (task.status === "completed") {
+    card_checkbox.classList.add("checked");
+    card.classList.add("completed");
   }
 
   switch (task.priority) {

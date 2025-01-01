@@ -138,44 +138,6 @@
             </header>
 
             <div class="tasks-container">
-                <!-- <div class="task p1">
-                    <div class="content-container">
-                        <div class="task-checkbox">
-                        </div>
-                        <div class="task-content">
-                            <div class="task-title">Start a bit of EMW please we are too f late</div>
-                            <div class="task-description">sdhljglasdgadsgflasfdashafsadljfashdlfsf</div>
-                        </div>
-                        <button class="task-editor">
-                            <svg width="24" height="24">
-                                <g fill="none" fill-rule="evenodd">
-                                    <path fill="currentColor" d="M9.5 19h10a.5.5 0 1 1 0 1h-10a.5.5 0 1 1 0-1z"
-                                        data-darkreader-inline-fill="" style="--darkreader-inline-fill: currentColor;">
-                                    </path>
-                                    <path stroke="currentColor"
-                                        d="M4.42 16.03a1.5 1.5 0 0 0-.43.9l-.22 2.02a.5.5 0 0 0 .55.55l2.02-.21a1.5 1.5 0 0 0 .9-.44L18.7 7.4a1.5 1.5 0 0 0 0-2.12l-.7-.7a1.5 1.5 0 0 0-2.13 0L4.42 16.02z"
-                                        data-darkreader-inline-stroke=""
-                                        style="--darkreader-inline-stroke: currentColor;">
-                                    </path>
-                                </g>
-                            </svg>
-                        </button>
-                        <button class="task-delete">
-                            <svg viewBox="0 0 24 24" class="hf94KxN" width="18" height="18">
-                                <path fill="currentColor" fill-rule="nonzero"
-                                    d="M5.146 5.146a.5.5 0 0 1 .708 0L12 11.293l6.146-6.147a.5.5 0 0 1 .638-.057l.07.057a.5.5 0 0 1 0 .708L12.707 12l6.147 6.146a.5.5 0 0 1 .057.638l-.057.07a.5.5 0 0 1-.708 0L12 12.707l-6.146 6.147a.5.5 0 0 1-.638.057l-.07-.057a.5.5 0 0 1 0-.708L11.293 12 5.146 5.854a.5.5 0 0 1-.057-.638z"
-                                    data-darkreader-inline-fill="" style="--darkreader-inline-fill: currentColor;">
-                                </path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="task-meta">
-                        <span class="task-date">Oct 26</span>
-                        <span class="task-tag">read</span>
-                        <span class="task-tag">study</span>
-                        <span class="task-tag">play</span>
-                    </div>
-                </div> -->
             </div>
 
             <button class="show-add-task-button">
@@ -298,6 +260,18 @@
                     </div>
                 </div>
             </section>
+
+            <div class="completed-section">
+                <button class="completed-button">
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span class="header-text">Completed</span>
+                    <span class="task-count">0</span>
+                </button>
+                <div class="completed-tasks" id="completedTasks">
+                </div>
+            </div>
         </main>
     </div>
 

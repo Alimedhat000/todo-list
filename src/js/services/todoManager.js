@@ -52,10 +52,11 @@ export class TodoManager {
 
   renderSavedTasks() {
     const tasksContainer = document.querySelector(".tasks-container");
-    // tasksContainer.innerHTML = ""; // Clear existing content
+    tasksContainer.innerHTML = ""; // Clear existing content
 
     if (this.activeProject && this.activeProject.todos.length > 0) {
       this.activeProject.todos.forEach((todo) => {
+        if (todo.status === "completed") return;
         const taskCard = makeTaskCard(todo);
         tasksContainer.appendChild(taskCard);
       });
@@ -136,5 +137,20 @@ export class TodoManager {
   }
   findtask(id) {
     return this.activeProject.todos.find((todo) => todo.id === id);
+  }
+
+  toggleTodoStatus(todoId) {
+    const todo = this.findtask(todoId);
+    if (!todo) throw new Error("Todo not found");
+
+    todo.status = todo.status === "completed" ? "pending" : "completed";
+    this.saveToStorage();
+    return todo;
+  }
+
+  getCompletedTodos() {
+    return this.activeProject.todos.filter(
+      (todo) => todo.status === "completed"
+    );
   }
 }
