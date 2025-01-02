@@ -48,6 +48,10 @@ export class sidebarHandler {
                                 d="M15.1042 21.875V16.625C15.1042 16.0727 14.6565 15.625 14.1042 15.625H10.8958C10.3436 15.625 9.89584 16.0727 9.89584 16.625V21.875"
                                 stroke="#414141" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>`,
+      newlist: `<svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 8H19M8 12H19M8 16H19M5 8V8.00999M5 12V12.01M5 16V16.01" stroke="#868583" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>`,
     };
     this.initializeState();
     this.setupEventListeners();
@@ -60,6 +64,96 @@ export class sidebarHandler {
       this.sidebar.classList.add("collapsed");
       this.menuToggleButton.classList.add("rotated");
     }
+    this.setupProjectDialogs();
+    // Load and render saved projects
+    this.renderSavedProjects();
+  }
+
+  renderSavedProjects() {
+    const projectsList = document.querySelector(".projects-list");
+    projectsList.innerHTML = ""; // Clear existing projects
+
+    this.todoManager.getAllProjects().forEach((project) => {
+      console.log("Project:", project);
+      if (project !== this.todoManager.defaultProject) {
+        // Skip default project
+        this.addProjectToSidebar(project);
+      }
+    });
+  }
+
+  setupProjectDialogs() {
+    // Create dialog elements
+    const newProjectDialog = document.createElement("dialog");
+    newProjectDialog.innerHTML = `
+      <form method="dialog">
+        <h3>New Project</h3>
+        <input type="text" id="newProjectName" placeholder="Project name" required>
+        <input type="text" id="newProjectDesc" placeholder="Description (optional)">
+        <div class="dialog-buttons">
+          <button type="submit">Create</button>
+          <button type="button" class="cancel-btn">Cancel</button>
+        </div>
+      </form>
+    `;
+    document.body.appendChild(newProjectDialog);
+
+    const renameProjectDialog = document.createElement("dialog");
+    renameProjectDialog.innerHTML = `
+      <form method="dialog">
+        <h3>Rename Project</h3>
+        <input type="text" id="renameProjectName" placeholder="New name" required>
+        <input type="text" id="renameProjectDesc" placeholder="New description">
+        <div class="dialog-buttons">
+          <button type="submit">Rename</button>
+          <button type="button" class="cancel-btn">Cancel</button>
+        </div>
+      </form>
+    `;
+    document.body.appendChild(renameProjectDialog);
+
+    this.newProjectDialog = newProjectDialog;
+    this.renameProjectDialog = renameProjectDialog;
+
+    // Add delete confirmation dialog
+    const deleteConfirmDialog = document.createElement("dialog");
+    deleteConfirmDialog.innerHTML = `
+      <form method="dialog">
+        <h3>Delete Project</h3>
+        <p>Are you sure you want to delete this project and all its tasks?</p>
+        <div class="dialog-buttons">
+          <button type="submit" class="delete-btn">Delete</button>
+          <button type="button" class="cancel-btn">Cancel</button>
+        </div>
+      </form>
+    `;
+    document.body.appendChild(deleteConfirmDialog);
+    this.deleteConfirmDialog = deleteConfirmDialog;
+    this.setupDialogListeners(deleteConfirmDialog);
+
+    // Add alert dialog for default project
+    const alertDialog = document.createElement("dialog");
+    alertDialog.innerHTML = `
+      <form method="dialog">
+        <h3>Cannot Delete Project</h3>
+        <p>The default projects cannot be deleted.</p>
+        <div class="dialog-buttons">
+          <button type="submit" class="ok-btn">OK</button>
+        </div>
+      </form>
+    `;
+    document.body.appendChild(alertDialog);
+    this.alertDialog = alertDialog;
+
+    // Set up dialog event listeners
+    this.setupDialogListeners(newProjectDialog);
+    this.setupDialogListeners(renameProjectDialog);
+  }
+
+  setupDialogListeners(dialog) {
+    dialog.querySelector(".cancel-btn").addEventListener("click", () => {
+      dialog.close();
+    });
   }
 
   setupEventListeners() {
@@ -102,17 +196,68 @@ export class sidebarHandler {
         this.menuToggleButton.classList.add("rotated");
       }
     });
+
+    // Add new project button handler
+    document.querySelector(".menu-new-button").addEventListener("click", () => {
+      this.handleNewProject();
+    });
+
+    // Add project rename handler
+    document.addEventListener("contextmenu", (e) => {
+      const projectItem = e.target.closest(".project-item");
+      if (projectItem) {
+        e.preventDefault();
+        this.handleProjectRename(projectItem.dataset.projectId);
+      }
+    });
+
+    // Replace confirm prompt with dialog
+    const deleteButton = document.querySelector(".header-delete-button");
+    if (deleteButton) {
+      deleteButton.addEventListener("click", () => {
+        if (
+          this.todoManager.activeProject === this.todoManager.defaultProject
+        ) {
+          // Show custom alert dialog instead of browser alert
+          this.alertDialog.showModal();
+          return;
+        }
+
+        const projectToDelete = this.todoManager.activeProject;
+        this.deleteConfirmDialog.showModal();
+
+        const handleDelete = (e) => {
+          e.preventDefault();
+
+          const projectElement = document.querySelector(
+            `.project-item[data-project-id="${projectToDelete.id}"]`
+          );
+          if (projectElement) {
+            projectElement.remove();
+          }
+
+          this.todoManager.removeProject(projectToDelete);
+          this.handleHomeView();
+          this.deleteConfirmDialog.close();
+        };
+
+        // Remove old event listener if exists
+        const form = this.deleteConfirmDialog.querySelector("form");
+        const newForm = form.cloneNode(true);
+        form.parentNode.replaceChild(newForm, form);
+
+        // Add new event listener
+        newForm.addEventListener("submit", handleDelete);
+      });
+    }
   }
 
   handleHomeView() {
     this.updateActiveMenu("#homeButton");
     this.headerTitle.textContent = "Home";
     this.headerIcon.innerHTML = this.svgTemplates.home;
-    // Show all non-completed tasks
-    const allTasks = this.todoManager.activeProject.todos.filter(
-      (todo) => todo.status !== "completed"
-    );
-    this.renderFilteredTodos(allTasks);
+    const defaultProject = this.todoManager.projects[0];
+    this.handleProjectSwitch(defaultProject);
   }
 
   handleMenuItemClick(item) {
@@ -179,5 +324,133 @@ export class sidebarHandler {
       const taskCard = makeTaskCard(todo);
       this.tasksContainer.appendChild(taskCard);
     });
+  }
+
+  handleNewProject() {
+    this.newProjectDialog.showModal();
+
+    this.newProjectDialog.querySelector("form").onsubmit = (e) => {
+      e.preventDefault();
+      const name = document.getElementById("newProjectName").value;
+      const description = document.getElementById("newProjectDesc").value;
+
+      const newProject = this.todoManager.createProject(name, description);
+      this.addProjectToSidebar(newProject);
+      this.newProjectDialog.close();
+
+      // Clear form
+      e.target.reset();
+    };
+  }
+
+  handleProjectRename(projectId) {
+    const project = this.todoManager.findProject(projectId);
+    if (!project) return;
+
+    const nameInput = document.getElementById("renameProjectName");
+    const descInput = document.getElementById("renameProjectDesc");
+
+    nameInput.value = project.name;
+    descInput.value = project.description;
+
+    this.renameProjectDialog.showModal();
+
+    this.renameProjectDialog.querySelector("form").onsubmit = (e) => {
+      e.preventDefault();
+      const newName = nameInput.value;
+      const newDesc = descInput.value;
+
+      this.todoManager.updateProject(project, newName, newDesc);
+      this.updateProjectInSidebar(project);
+      this.renameProjectDialog.close();
+
+      // Clear form
+      e.target.reset();
+    };
+  }
+
+  addProjectToSidebar(project) {
+    const projectsList = document.querySelector(".projects-list");
+    const projectItem = document.createElement("li");
+    projectItem.className = "project-item";
+    projectItem.dataset.projectId = project.id;
+    projectItem.innerHTML = `<button class="menu-button" id="${project.id}">
+                                ${this.svgTemplates.newlist}
+                                <span>${project.name}</span>
+                              </button>
+    `;
+
+    // Add click handler for project switching
+    projectItem.querySelector("button").addEventListener("click", () => {
+      this.handleProjectSwitch(project);
+    });
+    projectsList.appendChild(projectItem);
+  }
+
+  handleProjectSwitch(project) {
+    // Update active project in TodoManager
+    this.todoManager.setActiveProject(project);
+
+    // Update UI
+    this.updateActiveProject(project);
+    this.headerTitle.textContent = project.name;
+    this.headerIcon.innerHTML = this.svgTemplates.newlist;
+
+    // Render todos for the selected project
+    this.renderProjectTodos();
+  }
+
+  updateActiveProject(project) {
+    // Remove active class from all projects
+    document.querySelectorAll(".project-item").forEach((item) => {
+      item.classList.remove("active");
+    });
+
+    // Add active class to selected project
+    const projectItem = document.querySelector(
+      `.project-item[data-project-id="${project.id}"]`
+    );
+    if (projectItem) {
+      projectItem.classList.add("active");
+    }
+
+    // Remove active class from menu items
+    this.menuItems.forEach((item) => item.classList.remove("active"));
+  }
+
+  renderProjectTodos() {
+    const nonCompletedTodos = this.todoManager.activeProject.todos.filter(
+      (todo) => todo.status !== "completed"
+    );
+    this.renderFilteredTodos(nonCompletedTodos);
+
+    // Update completed section
+    this.updateCompletedSection();
+  }
+
+  updateCompletedSection() {
+    const completedTodos = this.todoManager.getCompletedTodos();
+    const completedCount = document.querySelector(".task-count");
+    if (completedCount) {
+      completedCount.textContent = completedTodos.length;
+    }
+
+    const completedTasksContainer = document.getElementById("completedTasks");
+    if (completedTasksContainer) {
+      completedTasksContainer.innerHTML = "";
+      completedTodos.forEach((todo) => {
+        const taskCard = makeTaskCard(todo);
+        completedTasksContainer.appendChild(taskCard);
+      });
+    }
+  }
+
+  updateProjectInSidebar(project) {
+    const projectItem = document.querySelector(
+      `.project-item[data-project-id="${project.id}"]`
+    );
+    if (projectItem) {
+      projectItem.querySelector("span").textContent = project.name;
+    }
   }
 }
