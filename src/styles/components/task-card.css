@@ -105,8 +105,8 @@
 }
 
 .task.overdue .task-date {
-  color: #dc3545;
-  background: rgb(252, 223, 223);
+  color: #7e22ce;
+  background: rgb(222, 197, 244);
 }
 
 /* Priority Styles */

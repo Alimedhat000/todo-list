@@ -153,4 +153,20 @@ export class TodoManager {
       (todo) => todo.status === "completed"
     );
   }
+
+  getTodayTodos() {
+    const today = new Date();
+    return this.activeProject.todos.filter((todo) => {
+      if (!todo.dateObj) return false;
+      return todo.dateObj.toDateString() === today.toDateString();
+    });
+  }
+
+  getImportantTodos() {
+    return this.activeProject.todos.filter((todo) => todo.priority === "high");
+  }
+
+  getPlannedTodos() {
+    return this.activeProject.todos.filter((todo) => todo.dateObj !== null);
+  }
 }

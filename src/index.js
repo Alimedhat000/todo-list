@@ -11,6 +11,6 @@ import { ProjectHandler } from "./js/handlers/projectHandler";
 
 const todoManager = new TodoManager(Project, Todo);
 const taskHandler = new TaskHandler(todoManager);
-const sidebar = new sidebarHandler();
+const sidebar = new sidebarHandler(todoManager);
 const taskedit = new taskButtonHandler(todoManager);
 const projectHandler = new ProjectHandler(todoManager);

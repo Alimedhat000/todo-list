@@ -225,28 +225,28 @@
 
 /* Priority colors */
 .dropdown-item[data-priority="high"] {
-  color: #d84c4c;
+  color: var(--priority-2);
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .dropdown-item[data-priority="medium"] {
-  color: #e9a321;
+  color: var(--priority-3);
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .dropdown-item[data-priority="low"] {
-  color: #4caf50;
+  color: var(--priority-4);
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .dropdown-item[data-priority="none"] {
-  color: var(--grey);
+  color: var(--priority-1);
   display: flex;
   align-items: center;
   gap: 8px;

@@ -80,14 +80,14 @@ function createPriorityDropdown(initialPriority = "none") {
   const priorities = {
     high: "🔴",
     medium: "🟡",
-    low: "🟢",
+    low: "🔵",
     none: "",
   };
   const priorityColors = {
-    high: "var(--priority-1)",
-    medium: "var(--priority-2)",
-    low: "var(--priority-3)",
-    none: "var(--grey)",
+    high: "var(--priority-2)",
+    medium: "var(--priority-3)",
+    low: "var(--priority-4)",
+    none: "var(--priority-1)",
   };
 
   const currentPriorityEmoji = priorities[initialPriority] || "";
@@ -113,7 +113,7 @@ function createPriorityDropdown(initialPriority = "none") {
             }" data-priority="medium">🟡 Medium</div>
             <div class="dropdown-item ${
               initialPriority === "low" ? "selected" : ""
-            }" data-priority="low">🟢 Low</div>
+            }" data-priority="low">🔵 Low</div>
             <div class="dropdown-item ${
               initialPriority === "none" ? "selected" : ""
             }" data-priority="none">None</div>

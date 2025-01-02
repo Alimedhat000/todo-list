@@ -10,7 +10,8 @@ header {
 .header-title {
   color: var(--blue);
   display: flex;
-  gap: 5px;
+  gap: 8px;
+  align-items: center;
   font-weight: var(--bold);
   font-size: 22px;
 }
@@ -19,6 +20,23 @@ header {
   align-items: center;
   gap: 5px;
 }
+.header-icon {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+.header-icon path,
+.header-icon circle,
+.header-icon rect {
+  stroke: var(--blue);
+  stroke-width: 1.5;
+  transition: stroke 0.3s ease;
+}
+
+.header-icon:hover {
+  transform: scale(1.05);
+}
+
 .edit-header-title-button {
   display: flex;
   align-items: center;

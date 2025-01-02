@@ -9,11 +9,12 @@
   --blue: #2564cf;
   --red: #ff4d4d;
   --kinda_white: #faf9f8;
+  --soft_blue: #f0f4fa;
 
   --priority-1: #8e959e;
-  --priority-2: #ffc107;
-  --priority-3: #17a2b8;
-  --priority-4: #28a745;
+  --priority-2: #ef4444;
+  --priority-3: #eab308;
+  --priority-4: #3b82f6;
 
   /* Shadows */
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
