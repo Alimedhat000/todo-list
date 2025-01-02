@@ -39,12 +39,20 @@ export class TodoManager {
           );
           todo.id = todoData.id;
           todo.status = todoData.status;
-          console.log("Created todo object:", todo);
-          console.log("Tags after creation:", todo.tags);
           return todo;
         });
         return project;
       });
+
+      const homeProject = this.projects.find((p) => p.name === "Home");
+
+      if (!homeProject) {
+        // Add default project at the beginning
+        this.projects.unshift(this.defaultProject);
+      } else {
+        // Update reference to existing home project
+        this.defaultProject = homeProject;
+      }
       this.activeProject = this.projects[0];
     }
     this.saveToStorage();
@@ -76,9 +84,11 @@ export class TodoManager {
 
   setActiveProject(project) {
     if (!(project instanceof this.ProjectClass)) {
-      throw new Error("invalid Project");
+      throw new Error("Invalid Project");
     }
     this.activeProject = project;
+    this.saveToStorage();
+    return this.activeProject;
   }
 
   getAllProjects() {
@@ -156,17 +166,27 @@ export class TodoManager {
 
   getTodayTodos() {
     const today = new Date();
-    return this.activeProject.todos.filter((todo) => {
-      if (!todo.dateObj) return false;
-      return todo.dateObj.toDateString() === today.toDateString();
-    });
+    return this.projects.flatMap((project) =>
+      project.todos.filter((todo) => {
+        if (!todo.dateObj) return false;
+        return todo.dateObj.toDateString() === today.toDateString();
+      })
+    );
   }
 
   getImportantTodos() {
-    return this.activeProject.todos.filter((todo) => todo.priority === "high");
+    return this.projects.flatMap((project) =>
+      project.todos.filter((todo) => todo.priority === "high")
+    );
   }
 
   getPlannedTodos() {
-    return this.activeProject.todos.filter((todo) => todo.dateObj !== null);
+    return this.projects.flatMap((project) =>
+      project.todos.filter((todo) => todo.dateObj !== null)
+    );
+  }
+
+  findProject(id) {
+    return this.projects.find((project) => project.id === id);
   }
 }
