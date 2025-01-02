@@ -274,16 +274,16 @@ export class sidebarHandler {
   handleKeyboardNavigation(e) {
     const activeItem = document.querySelector(".menu li.active");
     if (!activeItem) return;
-
+    const prev = activeItem.previousElementSibling;
+    const next = activeItem.nextElementSibling;
     switch (e.key) {
       case "ArrowUp":
         e.preventDefault();
-        const prev = activeItem.previousElementSibling;
+
         if (prev && prev.id !== "empty") prev.click();
         break;
       case "ArrowDown":
         e.preventDefault();
-        const next = activeItem.nextElementSibling;
         if (next && next.id !== "empty") next.click();
         break;
     }

@@ -1,5 +1,3 @@
-import { Todo } from "../models/todo";
-
 export function createEditTaskCard(task = null) {
   // Create the main section
   const section = document.createElement("section");

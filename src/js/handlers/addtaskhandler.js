@@ -1,4 +1,3 @@
-import { Todo } from "../models/todo";
 import { makeTaskCard } from "../components/taskcardmaker";
 
 export class TaskHandler {

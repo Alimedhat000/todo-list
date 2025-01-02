@@ -190,7 +190,7 @@ export class taskButtonHandler {
 
     if (newTagInput) {
       // Add check for newTagInput
-      this.setupNewTagInput(newTagInput, dropdownContent);
+      this.setupNewTagInput(newTagInput);
     }
     this.setupExistingTags(dropdownContent);
 
@@ -200,7 +200,7 @@ export class taskButtonHandler {
     });
   }
 
-  setupNewTagInput(newTagInput, dropdownContent) {
+  setupNewTagInput(newTagInput) {
     newTagInput.addEventListener("keypress", (e) => {
       if (e.key === "Enter" && newTagInput.value.trim()) {
         const tagName = newTagInput.value.trim();
